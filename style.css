@@ -1,0 +1,13 @@
+body{
+    background-color: coral;
+}
+
+.input{
+    display:flex;
+    flex-flow: wrap column;
+    margin:80px;
+    padding:50px 28% ;
+}
+.search-container{
+    text-align: center;
+}
