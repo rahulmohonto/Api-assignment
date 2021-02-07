@@ -12,19 +12,20 @@ getBtn.addEventListener('click', () => {
     getMealData(getmealName);
 })
 
-updateMeal = data => {
+const updateMeal = data => {
     const node = document.getElementById('list-div');
+
     for (i = 0; i < data.meals.length; i++) {
         const mealElement = data.meals[i];
 
         const mealList = document.createElement('div');
         mealList.className = 'meal-name';
         const mealInfo = `
-        <img src=${mealElement.strMealThumb}>
+         <img src=${mealElement.strMealThumb}>
         <h3>${mealElement.strMeal}</h3>
-           <p>${mealElement.idMeal}</p>
-           <button onclick="mealDetail('${mealElement.strMeal}')" type="button" id="detail-button">Details</button>
-            `
+       <p>${mealElement.idMeal}</p>
+     <button onclick="mealDetail('${mealElement.strMeal}')" type="button" id="detail-button">Details</button>
+        `
         mealList.innerHTML = mealInfo;
         node.appendChild(mealList);
     }
@@ -40,35 +41,51 @@ const mealDetail = meals => {
 
 showMealDetail = data => {
     const detrailNode = document.getElementById('detail-div')
-    // const listNode = document.getElementById('ingredient-list')
+
     for (i = 0; i < data.meals.length; i++) {
         const mealIngredients = data.meals[i];
         console.log(mealIngredients);
-
-        // document.getElementById('images').innerText = mealIngredients.strMealThumb;
-        // document.getElementById('ingredient1').innerText = mealIngredients.strIngredient1;
 
         const ingredientList = document.createElement('div')
         const listItem = document.createElement('li')
 
         ingredientList.className = 'detail-class';
         const ingredientsInfo = `
-            <img src=${mealIngredients.strMealThumb}>
+        <img src=${mealIngredients.strMealThumb}>
             <li>${mealIngredients.strIngredient1}</li>
             <li>${mealIngredients.strIngredient2}</li>
             <li>${mealIngredients.strIngredient3}</li>
             <li>${mealIngredients.strIngredient4}</li>
             <li>${mealIngredients.strIngredient5}</li>
             <li>${mealIngredients.strIngredient6}</li>
-           `
+        `
         // document.getElementById('ingredient-list').innerHTML = ingredientsInfo;
         ingredientList.innerHTML = ingredientsInfo;
         detrailNode.appendChild(ingredientList);
     }
-    document.getElementById('detail-div').innerHTML = "";
+    // document.getElementById('detail-div').innerHTML = "";
 }
 
 
+// const getinputvalue = document.getElementById('input-id').value;
+
+// document.getElementById('search_btn').addEventListener('click', function (e) {
+//     e.preventDefault();
+//     const input = getinputvalue.value;
+
+//     fetch('https://www.themealdb.com/api/json/v1/1/random.php?={input}')
+//         .then(res => res.json())
+//         .then(data => {
+//             if (data.cod === "404") {
+//                 alert('please recheck your given meal name!')
+//             } else {
+//                 updateMeal(data);
+//             }
+//         }).catch('error');
+
+//     getinputvalue.value = '';
+
+// })
 
 
 
@@ -79,18 +96,7 @@ showMealDetail = data => {
 
 
 
-// getMealData('');
 
-
-// updateData = data => {
-//     document.getElementById('city').innerText = data.name || 'Unknown Location!';
-//     document.getElementById('temperature').innerText = data.main.temp;
-//     document.getElementById('condition').innerText = data.weather[0].main;
-//     document.getElementById('img-icon').setAttribute('src',
-//         `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`);
-//     document.getElementById('city').value = "";
-
-// }
 
 
 
