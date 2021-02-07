@@ -1,5 +1,5 @@
 const getMealData = meals => {
-    fetch('https://www.themealdb.com/api/json/v1/1/search.php?f=a')
+    fetch('https://www.themealdb.com/api/json/v1/1/random.php')
         .then(res => res.json())
         .then(data => {
             updateMeal(data)
@@ -13,15 +13,73 @@ getBtn.addEventListener('click', () => {
 })
 
 updateMeal = data => {
+    const node = document.getElementById('list-div');
+    for (i = 0; i < data.meals.length; i++) {
+        const mealElement = data.meals[i];
 
-    for (i = 0; i < data.length; i++) {
-        const getMealElement = data[0].meals;
-        document.getElementById('meal-name').innerText = getMealElement.strMeal;
-        console.log('meal-name');
-        document.getElementById('meal-id').innerText = getMealElement.idMeal;
+        const mealList = document.createElement('div');
+        mealList.className = 'meal-name';
+        const mealInfo = `
+        <img src=${mealElement.strMealThumb}>
+        <h3>${mealElement.strMeal}</h3>
+           <p>${mealElement.idMeal}</p>
+           <button onclick="mealDetail('${mealElement.strMeal}')" type="button" id="detail-button">Details</button>
+            `
+        mealList.innerHTML = mealInfo;
+        node.appendChild(mealList);
     }
 }
-getMealData('Apple Frangipan Tart');
+
+const mealDetail = meals => {
+    fetch('https://www.themealdb.com/api/json/v1/1/random.php')
+        .then(res => res.json())
+        .then(data => {
+            showMealDetail(data)
+        });
+}
+
+showMealDetail = data => {
+    const detrailNode = document.getElementById('detail-div')
+    // const listNode = document.getElementById('ingredient-list')
+    for (i = 0; i < data.meals.length; i++) {
+        const mealIngredients = data.meals[i];
+        console.log(mealIngredients);
+
+        // document.getElementById('images').innerText = mealIngredients.strMealThumb;
+        // document.getElementById('ingredient1').innerText = mealIngredients.strIngredient1;
+
+        const ingredientList = document.createElement('div')
+        const listItem = document.createElement('li')
+
+        ingredientList.className = 'detail-class';
+        const ingredientsInfo = `
+            <img src=${mealIngredients.strMealThumb}>
+            <li>${mealIngredients.strIngredient1}</li>
+            <li>${mealIngredients.strIngredient2}</li>
+            <li>${mealIngredients.strIngredient3}</li>
+            <li>${mealIngredients.strIngredient4}</li>
+            <li>${mealIngredients.strIngredient5}</li>
+            <li>${mealIngredients.strIngredient6}</li>
+           `
+        // document.getElementById('ingredient-list').innerHTML = ingredientsInfo;
+        ingredientList.innerHTML = ingredientsInfo;
+        detrailNode.appendChild(ingredientList);
+    }
+    document.getElementById('detail-div').innerHTML = "";
+}
+
+
+
+
+
+
+
+
+
+
+
+
+// getMealData('');
 
 
 // updateData = data => {
@@ -95,44 +153,3 @@ getMealData('Apple Frangipan Tart');
 // getApi();
 
 
-// function diplayCityCapital(data) {
-//     const node = document.getElementById('list-div');
-//     for (i = 0; i < data.length; i++) {
-//         const getDataElement = data[i];
-//         const countryList = document.createElement('div');
-
-//         // const capitalList = document.createElement('h3');
-//         // countryList.innerText = getDataElement.name;
-
-//         // const List = document.createElement('p');
-//         // capitalList.innerText = getDataElement.capital;
-//         // countryList.appendChild(capitalList);
-//         // countryList.appendChild(List);
-//         // node.appendChild(countryList);
-
-//         countryList.className = 'countryName';
-//         const countryInfo = `
-//         <h3 class="country-name">${getDataElement.name}</h3>
-//         <p>${getDataElement.capital}</P>
-//             <button onclick=" displayDetail('${getDataElement.name}')" id="detail-btn" class="btn btn-primary">Details</button>
-//         `
-//         countryList.innerHTML = countryInfo;
-//         node.appendChild(countryList);
-//     }
-// }
-
-
-
-
-
-
-
-
-
-
-// document.getElementById('city').innerText = data.name || 'Unknown Location!';
-// document.getElementById('temperature').innerText = data.main.temp;
-// document.getElementById('condition').innerText = data.weather[0].main;
-// document.getElementById('img-icon').setAttribute('src',
-//     `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`);
-// document.getElementById('city').value = ""

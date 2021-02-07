@@ -11,3 +11,41 @@ body{
 .search-container{
     text-align: center;
 }
+#list-div {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    margin:50px;
+}
+
+.meal-name img{
+    width:100%;
+    border-radius: 14px;
+}
+.meal-name{
+    border: 1px solid green;
+    border-radius: 15px;
+    padding: 15px;
+    width: 200px;
+    text-align: center;
+}
+
+#detail-div{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    margin:50px;
+}
+
+
+.detail-class img{
+    width: 200px;
+    border-radius: 12px;
+}
+.detail-class {
+   
+    border-radius: 15px;
+    padding: 15px;
+    width: 200px;
+    text-align: center;
+}
