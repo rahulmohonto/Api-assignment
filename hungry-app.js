@@ -23,7 +23,7 @@ const updateMeal = data => {
         const mealInfo = `
          <img src=${mealElement.strMealThumb}>
         <h3>${mealElement.strMeal}</h3>
-       <p>${mealElement.idMeal}</p>
+      
      <button onclick="mealDetail('${mealElement.strMeal}')" type="button" id="detail-button">Details</button>
         `
         mealList.innerHTML = mealInfo;
@@ -36,21 +36,22 @@ const mealDetail = meals => {
         .then(res => res.json())
         .then(data => {
             showMealDetail(data)
-        });
-}
+        })
 
-showMealDetail = data => {
-    const detrailNode = document.getElementById('detail-div')
 
-    for (i = 0; i < data.meals.length; i++) {
-        const mealIngredients = data.meals[i];
-        console.log(mealIngredients);
 
-        const ingredientList = document.createElement('div')
-        const listItem = document.createElement('li')
+    const showMealDetail = data => {
+        const detrailNode = document.getElementById('detail-div')
 
-        ingredientList.className = 'detail-class';
-        const ingredientsInfo = `
+        for (i = 0; i < data.meals.length; i++) {
+            const mealIngredients = data.meals[i];
+            console.log(mealIngredients);
+
+            const ingredientList = document.createElement('div')
+            const listItem = document.createElement('li')
+
+            ingredientList.className = 'detail-class';
+            const ingredientsInfo = `
         <img src=${mealIngredients.strMealThumb}>
             <li>${mealIngredients.strIngredient1}</li>
             <li>${mealIngredients.strIngredient2}</li>
@@ -59,34 +60,14 @@ showMealDetail = data => {
             <li>${mealIngredients.strIngredient5}</li>
             <li>${mealIngredients.strIngredient6}</li>
         `
-        // document.getElementById('ingredient-list').innerHTML = ingredientsInfo;
-        ingredientList.innerHTML = ingredientsInfo;
-        detrailNode.appendChild(ingredientList);
+
+            ingredientList.innerHTML = ingredientsInfo;
+            detrailNode.appendChild(ingredientList);
+        }
+        // document.getElementById('detail-div').innerHTML = "";
     }
-    // document.getElementById('detail-div').innerHTML = "";
+
 }
-
-
-// const getinputvalue = document.getElementById('input-id').value;
-
-// document.getElementById('search_btn').addEventListener('click', function (e) {
-//     e.preventDefault();
-//     const input = getinputvalue.value;
-
-//     fetch('https://www.themealdb.com/api/json/v1/1/random.php?={input}')
-//         .then(res => res.json())
-//         .then(data => {
-//             if (data.cod === "404") {
-//                 alert('please recheck your given meal name!')
-//             } else {
-//                 updateMeal(data);
-//             }
-//         }).catch('error');
-
-//     getinputvalue.value = '';
-
-// })
-
 
 
 
