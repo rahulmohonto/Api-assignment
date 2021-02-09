@@ -12,8 +12,32 @@
 
 <body>
     <div class="container">
+        <div class="nav-container text-align-right">
+            <nav class="navbar navbar-expand-lg navbar-dark justify-content-around ">
+                <div class="container-fluid">
+                    <img class="logo-holder" src="logo.jpg">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+                        <div class="navbar-nav">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            <a class="nav-link" href="#">About</a>
+                            <a class="nav-link" href="#">Recipes</a>
+                            <a class="nav-link" href="#">Blog</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+
+
         <div class="input d-flex justify-content-center text-align-center">
             <div class="serach-container">
+                <h2 class="mb-3">Hungry Master</h2>
                 <input id="input-id" type="search" placeholder="Enter meal name">
                 <button id="search_btn" type="button" class="btn btn-primary ml-5">Search</button>
             </div>
@@ -29,7 +53,7 @@
     </div>
 
 
-
+    <!-- <script src="app.js"></script> -->
     <script src="hungry-app.js"></script>
 </body>
 

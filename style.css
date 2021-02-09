@@ -2,10 +2,16 @@ body{
     background-color: coral;
 }
 
+.logo-holder{
+    width:80px;
+    height:80px;
+    border-radius: 10px;
+}
+
 .input{
     display:flex;
     flex-flow: wrap column;
-    margin:80px;
+    margin:20px 80px;
     padding:50px 28% ;
 }
 .search-container{
@@ -14,13 +20,14 @@ body{
 #list-div {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 10px;
+    grid-gap: 15px;
     margin:50px;
 }
 
 .meal-name img{
     width:100%;
     border-radius: 14px;
+    box-shadow: 5px -4px 5px rgb(219, 184, 184);
 }
 .meal-name{
     border: 1px solid green;
@@ -28,6 +35,8 @@ body{
     padding: 15px;
     width: 200px;
     text-align: center;
+    background-color: cornflowerblue;
+    box-sizing: border-box;
 }
 
 #detail-div{
@@ -48,4 +57,8 @@ body{
     padding: 15px;
     width: 200px;
     text-align: center;
+}
+#detail-button{
+ background-color:saddlebrown ;
+ border-radius: 5px;
 }

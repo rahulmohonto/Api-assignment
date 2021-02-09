@@ -1,22 +1,29 @@
-const getMealData = meals => {
-    fetch('https://www.themealdb.com/api/json/v1/1/random.php')
-        .then(res => res.json())
-        .then(data => {
-            updateMeal(data)
-        })
-}
-
 const getBtn = document.getElementById('search_btn');
 getBtn.addEventListener('click', () => {
     const getmealName = document.getElementById('input-id').value;
+
+    console.log(getmealName);
     getMealData(getmealName);
+
+
 })
+
+
+getMealData = (getmealName) => {
+    fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${getmealName}`)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            updateMeal(data.meals)
+        })
+}
+
 
 const updateMeal = data => {
     const node = document.getElementById('list-div');
-
-    for (i = 0; i < data.meals.length; i++) {
-        const mealElement = data.meals[i];
+    document.getElementById('list-div').innerHTML = "";
+    for (i = 0; i < data.length; i++) {
+        const mealElement = data[i];
 
         const mealList = document.createElement('div');
         mealList.className = 'meal-name';
@@ -28,55 +35,52 @@ const updateMeal = data => {
         `
         mealList.innerHTML = mealInfo;
         node.appendChild(mealList);
+
     }
+
 }
 
-const mealDetail = meals => {
-    fetch('https://www.themealdb.com/api/json/v1/1/random.php')
+mealDetail = meals => {
+    fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${meals}`)
         .then(res => res.json())
         .then(data => {
-            showMealDetail(data)
+            showMealDetail(data.meals)
         })
+}
 
+const showMealDetail = meals => {
+    const detrailNode = document.getElementById('detail-div')
+    document.getElementById('detail-div').innerHTML = "";
+    for (i = 0; i < meals.length; i++) {
+        const mealIngredients = meals[i];
+        console.log(mealIngredients);
 
+        const ingredientList = document.createElement('div')
+        const listItem = document.createElement('li')
 
-    const showMealDetail = data => {
-        const detrailNode = document.getElementById('detail-div')
-
-        for (i = 0; i < data.meals.length; i++) {
-            const mealIngredients = data.meals[i];
-            console.log(mealIngredients);
-
-            const ingredientList = document.createElement('div')
-            const listItem = document.createElement('li')
-
-            ingredientList.className = 'detail-class';
-            const ingredientsInfo = `
+        ingredientList.className = 'detail-class';
+        const ingredientsInfo = `
         <img src=${mealIngredients.strMealThumb}>
-            <li>${mealIngredients.strIngredient1}</li>
-            <li>${mealIngredients.strIngredient2}</li>
-            <li>${mealIngredients.strIngredient3}</li>
-            <li>${mealIngredients.strIngredient4}</li>
-            <li>${mealIngredients.strIngredient5}</li>
-            <li>${mealIngredients.strIngredient6}</li>
+        <h4>${mealIngredients.strMeal}</h4>
+        <ul>
+            <li>${mealIngredients.strIngredient1} ${mealIngredients.strMeasure1}</li>
+            <li>${mealIngredients.strIngredient2} ${mealIngredients.strMeasure2}</li>
+            <li>${mealIngredients.strIngredient3} ${mealIngredients.strMeasure3}</li>
+            <li>${mealIngredients.strIngredient4} ${mealIngredients.strMeasure4}</li>
+            <li>${mealIngredients.strIngredient5} ${mealIngredients.strMeasure5}</li>
+            <li>${mealIngredients.strIngredient6} ${mealIngredients.strMeasure6}</li>
+            <li>${mealIngredients.strIngredient7} ${mealIngredients.strMeasure7}</li>
+            <li>${mealIngredients.strIngredient8} ${mealIngredients.strMeasure8}</li>
+            <li>${mealIngredients.strIngredient9} ${mealIngredients.strMeasure9}</li>
+            <li>${mealIngredients.strIngredient10} ${mealIngredients.strMeasure10}</li>
+            </ul>
         `
 
-            ingredientList.innerHTML = ingredientsInfo;
-            detrailNode.appendChild(ingredientList);
-        }
-        // document.getElementById('detail-div').innerHTML = "";
+        ingredientList.innerHTML = ingredientsInfo;
+        detrailNode.appendChild(ingredientList);
     }
 
 }
-
-
-
-
-
-
-
-
-
 
 
 
@@ -138,5 +142,3 @@ const mealDetail = meals => {
 //     }
 // }
 // getApi();
-
-
